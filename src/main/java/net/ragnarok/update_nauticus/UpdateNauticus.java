@@ -9,7 +9,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.ragnarok.update_nauticus.init.ModBiomes;
+import net.ragnarok.update_nauticus.common.worldgen.NauticusRegionOcean;
+import net.ragnarok.update_nauticus.common.worldgen.NauticusSurfaceRuleData;
+import net.ragnarok.update_nauticus.init.ModBlocks;
+import net.ragnarok.update_nauticus.init.ModItems;
 import org.slf4j.Logger;
+import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(UpdateNauticus.MOD_ID)
@@ -24,12 +31,26 @@ public class UpdateNauticus
 
         modEventBus.addListener(this::commonSetup);
 
+        ModBiomes.register(modEventBus);
+        ModBiomes.registerBiomes();
+
+        ModBlocks.register(modEventBus);
+
+        ModItems.register(modEventBus);
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        event.enqueueWork(() ->
+        {
+            // Given we only add two biomes, we should keep our weight relatively low.
+            Regions.register(new NauticusRegionOcean(6));
 
+            // Register our surface rules
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, NauticusSurfaceRuleData.makeRules());
+        });
     }
 
 

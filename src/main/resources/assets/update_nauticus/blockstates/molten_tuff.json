@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "update_nauticus:block/molten_tuff"
+      },
+      {
+        "model": "update_nauticus:block/molten_tuff",
+        "y": 90
+      },
+      {
+        "model": "update_nauticus:block/molten_tuff",
+        "y": 180
+      },
+      {
+        "model": "update_nauticus:block/molten_tuff",
+        "y": 270
+      }
+    ]
+  }
+}

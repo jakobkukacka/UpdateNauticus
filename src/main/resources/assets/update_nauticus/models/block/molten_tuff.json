@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "update_nauticus:block/molten_tuff"
+  }
+}
