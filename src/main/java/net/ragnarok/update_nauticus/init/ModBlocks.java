@@ -32,6 +32,12 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .lightLevel((blockState) -> blockState.getValue(ThermalVentBlock.THICKNESS) == DripstoneThickness.TIP ? 7 : 0)
             ), ModCreativeModeTabs.UPDATE_NAUTICUS_TAB);
+    public static final RegistryObject<Block> DEEPSLATE_VENT = registerBlock("deepslate_vent",
+            () -> new ThermalVentBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel((blockState) -> blockState.getValue(ThermalVentBlock.THICKNESS) == DripstoneThickness.TIP ? 7 : 0)
+            ), ModCreativeModeTabs.UPDATE_NAUTICUS_TAB);
 
     //UTILS
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

@@ -1,5 +1,6 @@
 {
   "block.update_nauticus.molten_tuff": "Molten Tuff",
   "block.update_nauticus.tuff_vent": "Tuff Thermal Vent",
+  "block.update_nauticus.deepslate_vent": "Deepslate Thermal Vent",
   "itemGroup.update_nauticus_tab" : "Nauticus"
 }
