@@ -1,11 +1,18 @@
 package net.ragnarok.update_nauticus.common.biome;
 
+import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.placement.NetherPlacements;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.registries.RegistryObject;
+import net.ragnarok.update_nauticus.common.worldgen.placement.NauticusPlacements;
 
 import javax.annotation.Nullable;
 
@@ -46,19 +53,24 @@ public class NauticusOverworldBiomes {
         //Mob Settings
         MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
         BiomeDefaultFeatures.oceanSpawns(spawnBuilder,4,10,1);
-        //Feature Settings
+        //Vanilla Features
         BiomeGenerationSettings.Builder biomeBuilder = new BiomeGenerationSettings.Builder();
-        BiomeDefaultFeatures.addFossilDecoration(biomeBuilder);
         globalOverworldGeneration(biomeBuilder);
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultFlowers(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultGrass(biomeBuilder);
-        BiomeDefaultFeatures.addDesertVegetation(biomeBuilder);
-        BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
-        BiomeDefaultFeatures.addDesertExtraVegetation(biomeBuilder);
-        BiomeDefaultFeatures.addDesertExtraDecoration(biomeBuilder);
+        //Mod Features
+        addFeature(biomeBuilder, GenerationStep.Decoration.VEGETAL_DECORATION, NauticusPlacements.VENT);
         return biome(Biome.Precipitation.NONE, 2.0F, 0.0F, spawnBuilder, biomeBuilder, WEIRD_MUSIC_ONE);
+    }
+
+    private static void addFeature(BiomeGenerationSettings.Builder builder, GenerationStep.Decoration step, RegistryObject<PlacedFeature> feature)
+    {
+        builder.addFeature(step, feature.getHolder().orElseThrow());
+    }
+
+    private static void addFeature(BiomeGenerationSettings.Builder builder, GenerationStep.Decoration step, Holder<PlacedFeature> feature)
+    {
+        builder.addFeature(step, feature);
     }
 
 }

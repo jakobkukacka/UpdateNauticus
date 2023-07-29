@@ -5,12 +5,14 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.DripstoneThickness;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.ragnarok.update_nauticus.UpdateNauticus;
+import net.ragnarok.update_nauticus.common.block.ThermalVentBlock;
 import net.ragnarok.update_nauticus.common.item.ModCreativeModeTabs;
 
 import java.util.function.Supplier;
@@ -22,7 +24,13 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(6f)
                     .requiresCorrectToolForDrops()
-                    .lightLevel((blockState) -> 16)
+                    .lightLevel((blockState) -> 5)
+            ), ModCreativeModeTabs.UPDATE_NAUTICUS_TAB);
+    public static final RegistryObject<Block> TUFF_VENT = registerBlock("tuff_vent",
+            () -> new ThermalVentBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel((blockState) -> blockState.getValue(ThermalVentBlock.THICKNESS) == DripstoneThickness.TIP ? 7 : 0)
             ), ModCreativeModeTabs.UPDATE_NAUTICUS_TAB);
 
     //UTILS

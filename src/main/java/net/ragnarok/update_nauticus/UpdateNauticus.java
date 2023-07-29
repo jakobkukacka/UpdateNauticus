@@ -9,6 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.ragnarok.update_nauticus.common.worldgen.feature.NauticusFeatures;
+import net.ragnarok.update_nauticus.common.worldgen.feature.configuration.NauticusConfiguredFeatures;
+import net.ragnarok.update_nauticus.common.worldgen.placement.NauticusPlacements;
 import net.ragnarok.update_nauticus.init.ModBiomes;
 import net.ragnarok.update_nauticus.common.worldgen.NauticusRegionOcean;
 import net.ragnarok.update_nauticus.common.worldgen.NauticusSurfaceRuleData;
@@ -31,12 +34,17 @@ public class UpdateNauticus
 
         modEventBus.addListener(this::commonSetup);
 
-        ModBiomes.register(modEventBus);
-        ModBiomes.registerBiomes();
-
         ModBlocks.register(modEventBus);
 
         ModItems.register(modEventBus);
+        NauticusFeatures.register(modEventBus);
+        NauticusConfiguredFeatures.register(modEventBus);
+        NauticusPlacements.register(modEventBus);
+
+        ModBiomes.register(modEventBus);
+        ModBiomes.registerBiomes();
+
+
 
         MinecraftForge.EVENT_BUS.register(this);
     }

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "thickness=base": {
+      "model": "update_nauticus:block/vent_base"
+    },
+    "thickness=middle": {
+      "model": "update_nauticus:block/vent_middle"
+    },
+    "thickness=tip": {
+      "model": "update_nauticus:block/vent_tip"
+    }
+  }
+}
