@@ -60,14 +60,11 @@ public class GiantVentFeature extends Feature<NoneFeatureConfiguration> {
                             worldgenlevel.setBlock(current.above(2), Blocks.SMOOTH_BASALT.defaultBlockState(), 2);
                     }
                     for (int i = 0; i < steepness; i++) {
-                        if(!(worldgenlevel.getBlockState(current).is(Blocks.WATER))) { //TODO: Check with tag
-                            skip = true;
-                            break;
-                        }
+
                         worldgenlevel.setBlock(current, Blocks.BASALT.defaultBlockState(), 2);
                         current.move(Direction.DOWN);
                     }
-                    if(skip)
+                    if(!(worldgenlevel.getBlockState(current).is(Blocks.WATER))) //TODO: Check with tag //Also check if this work
                         continue;
                     placeTillGround(current, center, steepness, worldgenlevel, rand);
         }
