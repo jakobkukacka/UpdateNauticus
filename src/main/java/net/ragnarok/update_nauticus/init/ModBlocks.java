@@ -12,6 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.ragnarok.update_nauticus.UpdateNauticus;
+import net.ragnarok.update_nauticus.common.block.CrustedLavaBlock;
 import net.ragnarok.update_nauticus.common.block.ThermalVentBlock;
 import net.ragnarok.update_nauticus.common.item.ModCreativeModeTabs;
 
@@ -26,6 +27,13 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .lightLevel((blockState) -> 5)
             ), ModCreativeModeTabs.UPDATE_NAUTICUS_TAB);
+    public static final RegistryObject<CrustedLavaBlock> CRUSTED_LAVA = registerBlock("crusted_lava",
+            () -> new CrustedLavaBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .strength(6f)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel((blockState) -> 8)
+            ), ModCreativeModeTabs.UPDATE_NAUTICUS_TAB);
+
     public static final RegistryObject<Block> TUFF_VENT = registerBlock("tuff_vent",
             () -> new ThermalVentBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .strength(4f)
@@ -44,6 +52,10 @@ public class ModBlocks {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registryBlockItem(name, toReturn, tab);
         return toReturn;
+    }
+
+    private static <T extends Block> RegistryObject<T> registerOnlyBlock(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
     }
 
     private static <T extends Block> RegistryObject<Item> registryBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {

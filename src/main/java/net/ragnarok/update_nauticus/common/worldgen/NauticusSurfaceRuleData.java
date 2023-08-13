@@ -9,8 +9,9 @@ import net.ragnarok.update_nauticus.common.biome.NauticusBiomes;
 import net.ragnarok.update_nauticus.init.ModBlocks;
 
 public class NauticusSurfaceRuleData {
-    private static final SurfaceRules.RuleSource MAGMA = makeStateRule(ModBlocks.MOLTEN_TUFF.get());
+    private static final SurfaceRules.RuleSource DEEPSLATE = makeStateRule(Blocks.DEEPSLATE);
     private static final SurfaceRules.RuleSource TUFF = makeStateRule(Blocks.TUFF);
+    private static final SurfaceRules.RuleSource MAGMA = makeStateRule(ModBlocks.MOLTEN_TUFF.get());
     private static final SurfaceRules.RuleSource GRASS_BLOCK = makeStateRule(Blocks.GRASS_BLOCK);
     private static final SurfaceRules.RuleSource BEDROCK = makeStateRule(Blocks.BEDROCK);
     private static final SurfaceRules.RuleSource DIRT = makeStateRule(Blocks.DIRT);
@@ -19,17 +20,18 @@ public class NauticusSurfaceRuleData {
     {
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
         SurfaceRules.RuleSource grassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(isAtOrAboveWaterLevel, GRASS_BLOCK), DIRT);
-        SurfaceRules.ConditionSource surfaceNoise = SurfaceRules.noiseCondition(Noises.SWAMP, 0.45D); // The lower the threshold the more often true it is
-        SurfaceRules.ConditionSource surfaceNoiseOuter = SurfaceRules.noiseCondition(Noises.SWAMP, 0.1D);
+        SurfaceRules.ConditionSource surfaceNoise = SurfaceRules.noiseCondition(Noises.SWAMP, 0.1D, 0.7D); // The lower the threshold the more often true it is
+        SurfaceRules.ConditionSource surfaceNoiseInner = SurfaceRules.noiseCondition(Noises.SWAMP, 0.7D);
 
         return SurfaceRules.sequence(
                 SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(NauticusBiomes.ABYSSAL_VENTS),
                         SurfaceRules.sequence(
                                 SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(),
-                                        SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(2,false, 2, CaveSurface.FLOOR),
+                                        SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(1,true, 1, CaveSurface.FLOOR),
                                                 SurfaceRules.sequence(
-                                                        SurfaceRules.ifTrue(surfaceNoise, MAGMA),
+                                                        SurfaceRules.ifTrue(surfaceNoise, DEEPSLATE),
+                                                        SurfaceRules.ifTrue(surfaceNoiseInner, MAGMA),
                                                         TUFF))
                                                 )
                         )),

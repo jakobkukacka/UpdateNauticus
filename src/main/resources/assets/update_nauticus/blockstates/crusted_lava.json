@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "update_nauticus:block/crusted_lava"
+      },
+      {
+        "model": "update_nauticus:block/crusted_lava",
+        "y": 90
+      },
+      {
+        "model": "update_nauticus:block/crusted_lava",
+        "y": 180
+      },
+      {
+        "model": "update_nauticus:block/crusted_lava",
+        "y": 270
+      }
+    ]
+  }
+}

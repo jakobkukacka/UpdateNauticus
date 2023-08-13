@@ -30,8 +30,8 @@ public class VentFeature extends Feature<NoneFeatureConfiguration> {
         int j = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR, chosen_pos.getX(), chosen_pos.getZ());
         BlockPos place_pos = new BlockPos(chosen_pos.getX(), j, chosen_pos.getZ());
         
-        if (worldgenlevel.getBlockState(place_pos).is(Blocks.WATER) && !worldgenlevel.getBlockState(place_pos.below()).is(ModBlocks.TUFF_VENT.get())) {
-            BlockState tuff_vent_blockstate = ModBlocks.TUFF_VENT.get().defaultBlockState();
+        if (worldgenlevel.getBlockState(place_pos).is(Blocks.WATER) && (!worldgenlevel.getBlockState(place_pos.below()).is(ModBlocks.TUFF_VENT.get()) && !worldgenlevel.getBlockState(place_pos.below()).is(ModBlocks.DEEPSLATE_VENT.get()))) { //TODO Solve this with TAGS
+            BlockState tuff_vent_blockstate = worldgenlevel.getBlockState(place_pos.below()).is(Blocks.TUFF) ? ModBlocks.TUFF_VENT.get().defaultBlockState() : ModBlocks.DEEPSLATE_VENT.get().defaultBlockState();
             int vent_height = (int) (randomsource.triangle(0,6)) + 1;
 
             for(int i = 0; i <= vent_height; i++) {

@@ -59,8 +59,11 @@ public class NauticusOverworldBiomes {
         BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
         BiomeDefaultFeatures.addDefaultSoftDisks(biomeBuilder);
         //Mod Features
+
+        addFeature(biomeBuilder, GenerationStep.Decoration.VEGETAL_DECORATION, NauticusPlacements.GIANT_VENT);
         addFeature(biomeBuilder, GenerationStep.Decoration.VEGETAL_DECORATION, NauticusPlacements.VENT);
-        return biome(Biome.Precipitation.NONE, 2.0F, 0.0F, spawnBuilder, biomeBuilder, WEIRD_MUSIC_ONE);
+
+        return biome(Biome.Precipitation.NONE, 2.0F, 0.0F, 10690335, 2818821 , spawnBuilder, biomeBuilder, WEIRD_MUSIC_ONE);
     }
 
     private static void addFeature(BiomeGenerationSettings.Builder builder, GenerationStep.Decoration step, RegistryObject<PlacedFeature> feature)

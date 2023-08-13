@@ -12,11 +12,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.ragnarok.update_nauticus.common.worldgen.feature.NauticusFeatures;
 import net.ragnarok.update_nauticus.common.worldgen.feature.configuration.NauticusConfiguredFeatures;
 import net.ragnarok.update_nauticus.common.worldgen.placement.NauticusPlacements;
-import net.ragnarok.update_nauticus.init.ModBiomes;
+import net.ragnarok.update_nauticus.init.*;
 import net.ragnarok.update_nauticus.common.worldgen.NauticusRegionOcean;
 import net.ragnarok.update_nauticus.common.worldgen.NauticusSurfaceRuleData;
-import net.ragnarok.update_nauticus.init.ModBlocks;
-import net.ragnarok.update_nauticus.init.ModItems;
 import org.slf4j.Logger;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
@@ -35,6 +33,7 @@ public class UpdateNauticus
         modEventBus.addListener(this::commonSetup);
 
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         ModItems.register(modEventBus);
         NauticusFeatures.register(modEventBus);
@@ -43,6 +42,8 @@ public class UpdateNauticus
 
         ModBiomes.register(modEventBus);
         ModBiomes.registerBiomes();
+
+        ModParticles.register(modEventBus);
 
 
 

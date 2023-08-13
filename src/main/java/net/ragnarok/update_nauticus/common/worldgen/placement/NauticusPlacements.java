@@ -19,7 +19,8 @@ public class NauticusPlacements {
 
     public static DeferredRegister<PlacedFeature> PLACED_FEATURES = DeferredRegister.create(Registry.PLACED_FEATURE_REGISTRY, UpdateNauticus.MOD_ID);
 
-    public static final RegistryObject<PlacedFeature> VENT = register("vent", NauticusConfiguredFeatures.VENT, () -> List.of(NoiseBasedCountPlacement.of(120, 80.0D, 0.0D), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome()));
+    public static final RegistryObject<PlacedFeature> VENT = register("vent", NauticusConfiguredFeatures.VENT, () -> List.of(CountPlacement.of(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome()));
+    public static final RegistryObject<PlacedFeature> GIANT_VENT = register("giant_vent", NauticusConfiguredFeatures.GIANT_VENT, () -> List.of(CountPlacement.of(3), RarityFilter.onAverageOnceEvery(5) , InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome()));
 
     public static RegistryObject<PlacedFeature> register(String key, Holder<? extends ConfiguredFeature<?, ?>> feature, List<PlacementModifier> modifiers)
     {
